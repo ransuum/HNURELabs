@@ -53,7 +53,7 @@ public class Process {
                         Main.println(financialTrackingSystem.findMostPopularCategory());
                         break;
                     case "8":
-                        financialTrackingSystem.displaySystemInfo(financialTrackingSystem);
+                        Main.println(financialTrackingSystem.displaySystemInfo());
                         break;
                     case "9":
                         Main.println(account.displayAccountInfo(financialTrackingSystem));
