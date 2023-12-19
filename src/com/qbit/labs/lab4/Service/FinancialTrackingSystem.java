@@ -240,16 +240,23 @@ public class FinancialTrackingSystem {
         return stringBuilder.toString();
     }
 
-    public void displaySystemInfo(FinancialTrackingSystem financialTrackingSystem){
-        Account account = new Account();
-        Main.println("Account INFO:");
-        account.displayAccountInfo(financialTrackingSystem);
-        Category category = new Category();
-        Main.println("Category INFO:");
-        category.displayCategoryInfo(financialTrackingSystem);
-        Transaction transaction = new Transaction();
-        Main.println("Transaction INFO:");
-        transaction.displayTransactionInfo(financialTrackingSystem);
+    public String displaySystemInfo(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Accounts:\n");
+        for (Account account : accountss) {
+            stringBuilder.append("id: ").append(account.getId()).append(" Remainder: ").append(account.getRemainder()).append("\n");
+        }
+        stringBuilder.append("Categories:\n");
+        for (Category category : categories) {
+            stringBuilder.append("id: ").append(category.getCategoryID()).append("Name: ").append(category.getName()).append("\n");
+        }
+        stringBuilder.append("Transactions:\n");
+        for (Transaction transaction : transactions) {
+            stringBuilder.append("transactionID:").append(transaction.getTransactionID()).append(" Sum:").append(transaction.getSumOfTrans()).append(" Description: ")
+                    .append(transaction.getDescr()).append(" {Category name = ").append(transaction.getCategory())
+                    .append("}").append(" {Time of creation: ").append(transaction.getTimestamp()).append("}").append("\n");
+        }
+        return stringBuilder.toString();
     }
     public List<Account> getAccounts() {
         return accountss;
