@@ -12,6 +12,9 @@ import java.util.*;
 import java.util.List;
 
 public class FinancialTrackingSystem {
+    private Integer idAcc = 1;
+    private Integer categoryID = 1;
+    private Integer transactionID = 1;
     private List<Account> accountss = new ArrayList<>();
     private List<Category> categories = new ArrayList<>();
     private List<Transaction> transactions = new ArrayList<>();
@@ -20,10 +23,10 @@ public class FinancialTrackingSystem {
         Main.print("Ur remainder: ");
         double remainder = Main.scanner.nextDouble();
         Account account = new Account();
-        account.setId(Main.idAcc);
+        account.setId(idAcc);
         account.setRemainder(remainder);
         accountss.add(account);
-        Main.idAcc++;
+        idAcc++;
         Main.println("Created!");
     }
 
@@ -52,9 +55,9 @@ public class FinancialTrackingSystem {
         String categoryName = Main.scanner.next();
         Category category = new Category();
         category.setName(categoryName);
-        category.setCategoryID(Main.categoryID);
+        category.setCategoryID(categoryID);
         categories.add(category);
-        Main.categoryID++;
+        categoryID++;
         Main.println("Created!");
     }
 
@@ -111,11 +114,11 @@ public class FinancialTrackingSystem {
                 accountToFound.setRemainder(remainder - sum);
                 transaction.setCategory(categoryToFind.getName());
                 transaction.setSumOfTrans(sum);
-                transaction.setTransactionID(Main.transactionID);
+                transaction.setTransactionID(transactionID);
                 transaction.setDescr("Transaction for account with {remainder = " + accountToFound.getRemainder() + "} {id = " + accountToFound.getId() + "}");
                 transaction.setTimeStamp(new Date());
                 transactions.add(transaction);
-                Main.transactionID++;
+                transactionID++;
                 Main.println("CREATED!");
             }
         }
@@ -240,23 +243,16 @@ public class FinancialTrackingSystem {
         return stringBuilder.toString();
     }
 
-    public String displaySystemInfo(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Accounts:\n");
-        for (Account account : accountss) {
-            stringBuilder.append("id: ").append(account.getId()).append(" Remainder: ").append(account.getRemainder()).append("\n");
-        }
-        stringBuilder.append("Categories:\n");
-        for (Category category : categories) {
-            stringBuilder.append("id: ").append(category.getCategoryID()).append("Name: ").append(category.getName()).append("\n");
-        }
-        stringBuilder.append("Transactions:\n");
-        for (Transaction transaction : transactions) {
-            stringBuilder.append("transactionID:").append(transaction.getTransactionID()).append(" Sum:").append(transaction.getSumOfTrans()).append(" Description: ")
-                    .append(transaction.getDescr()).append(" {Category name = ").append(transaction.getCategory())
-                    .append("}").append(" {Time of creation: ").append(transaction.getTimestamp()).append("}").append("\n");
-        }
-        return stringBuilder.toString();
+    public void displaySystemInfo(FinancialTrackingSystem financialTrackingSystem){
+        Account account = new Account();
+        Main.println("Account INFO:");
+        account.displayAccountInfo(financialTrackingSystem);
+        Category category = new Category();
+        Main.println("Category INFO:");
+        category.displayCategoryInfo(financialTrackingSystem);
+        Transaction transaction = new Transaction();
+        Main.println("Transaction INFO:");
+        transaction.displayTransactionInfo(financialTrackingSystem);
     }
     public List<Account> getAccounts() {
         return accountss;
