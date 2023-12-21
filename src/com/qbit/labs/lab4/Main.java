@@ -6,9 +6,6 @@ import java.util.Scanner;
 
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
-    public static int idAcc = 1;
-    public static int transactionID = 1;
-    public static int categoryID = 1;
 
     public static void main(String[] args) throws IOException, ParseException {
         Process process = new Process();
